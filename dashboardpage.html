@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | GradeMate</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body class="dashboard-page">
+
+    
+<header class="dashboard-header">
+    <a href="landingpage.html" class="brand">
+        <span class="brand-icon">G</span>
+        <span>Grade<span class="brand-highlight">Mate</span></span>
+    </a>
+
+    <div class="dashboard-header-actions">
+        <button
+            type="button"
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Switch to dark mode"
+            aria-pressed="false"
+        >
+            <span id="themeIcon" aria-hidden="true">🌙</span>
+        </button>
+
+        <a href="onboardingpage.html" class="dashboard-edit-link">
+            Edit profile
+        </a>
+    </div>
+</header>
+
+    <main class="dashboard-main">
+
+        <section class="dashboard-welcome">
+            <div>
+                <span class="dashboard-eyebrow">YOUR ACADEMIC SPACE</span>
+                <h1>Keep moving forward<span class="welcome-dot">.</span></h1>
+                <p id="dashboardSubtitle">
+                    Your academic journey, organized in one place.
+                </p>
+            </div>
+            <div class="welcome-symbol">⭐</div>
+        </section>
+
+        <section class="dashboard-profile">
+            <div class="profile-avatar" id="profileAvatar">S</div>
+            <div class="profile-details">
+                <h2 id="studentName">Student</h2>
+                <p id="studentCourse">Your department will appear here</p>
+                <p id="dashboardStudentLevel">Your level will appear here</p>
+                <span id="studentSchool" class="profile-school">
+                    Your university
+                </span>
+            </div>
+        </section>
+
+        <!-- Academic Results Button -->
+        
+        <a href="assistantpage.html" class="dashboard-results-button">
+    <span class="dashboard-results-icon">🤖</span>
+    <span class="dashboard-results-text">
+        <strong>AI Assistant</strong>
+        <small>Get study help and GPA advice</small>
+    </span>
+    <span class="dashboard-results-arrow">→</span>
+</a>
+        <section class="dashboard-section dashboard-results-section">
+            <a href="academicresultspage.html" class="dashboard-results-button">
+                <span class="dashboard-results-icon">📊</span>
+
+                <span class="dashboard-results-text">
+                    <strong>Academic Results</strong>
+                    <small>Enter your courses and calculate your GPA</small>
+                </span>
+
+                <span class="dashboard-results-arrow">→</span>
+            </a>
+        </section>
+        
+         <a href="cgparoadmappage.html" class="dashboard-results-button">
+    <span class="dashboard-results-icon">🎯</span>
+    <span class="dashboard-results-text">
+        <strong>CGPA Roadmap</strong>
+        <small>Discover the GPA you need to reach your target</small>
+    </span>
+    <span class="dashboard-results-arrow">→</span>
+</a>
+
+        <section class="dashboard-section">
+            <div class="dashboard-section-title">
+                <div>
+                    <h2>Your academic target</h2>
+                    <p>Keep your goal in sight.</p>
+                </div>
+            </div>
+
+            <div class="target-card">
+                <div class="target-card-top">
+                    <span class="target-label">TARGET DEGREE CLASS</span>
+                    <span class="target-star">⭐</span>
+                </div>
+
+                <h3 id="dashboardTargetClass">First Class</h3>
+
+                <div class="target-cgpa-row">
+                    <div>
+                        <span class="target-label">YOUR CGPA TARGET</span>
+                        <p id="dashboardTargetCgpa" class="target-cgpa">
+                            Not set yet
+                        </p>
+                    </div>
+                    <div class="target-note">
+                        <span>One step at a time.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-section">
+            <div class="dashboard-section-title">
+                <div>
+                    <h2>Your study routine</h2>
+                    <p>A routine built around your preferences.</p>
+                </div>
+            </div>
+
+            <div class="routine-grid">
+                <article class="routine-card">
+                    <span class="routine-icon">◷</span>
+                    <p class="routine-label">DAILY STUDY TIME</p>
+                    <h3 id="dashboardStudyHours">3 hours</h3>
+                    <p class="routine-description">
+                        Your preferred daily study duration
+                    </p>
+                </article>
+
+                <article class="routine-card">
+                    <span class="routine-icon">☾</span>
+                    <p class="routine-label">PREFERRED TIME</p>
+                    <h3 id="dashboardStudyTime">Night</h3>
+                    <p class="routine-description">
+                        Your preferred study period
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        
+<section class="dashboard-section">
+    <div class="dashboard-section-title">
+        <div>
+            <h2>Your academic progress</h2>
+            <p>See how your hard work is adding up.</p>
+        </div>
+    </div>
+
+    <div class="academic-overview-grid">
+
+        <article class="academic-overview-card">
+            <div class="overview-card-top">
+                <span class="overview-icon cgpa-icon">🎓</span>
+                <span class="overview-label">CURRENT CGPA</span>
+            </div>
+            <h3 id="dashboardCurrentCgpa">—</h3>
+            <p id="dashboardCgpaNote">
+                Add your semester results to get started.
+            </p>
+        </article>
+
+        <article class="academic-overview-card">
+            <div class="overview-card-top">
+                <span class="overview-icon gpa-icon">📈</span>
+                <span class="overview-label">LATEST SEMESTER GPA</span>
+            </div>
+            <h3 id="dashboardLatestGpa">—</h3>
+            <p id="dashboardLatestGpaNote">
+                Your latest result will appear here.
+            </p>
+        </article>
+
+        <article class="academic-overview-card">
+            <div class="overview-card-top">
+                <span class="overview-icon semesters-icon">📚</span>
+                <span class="overview-label">SAVED SEMESTERS</span>
+            </div>
+            <h3 id="dashboardSavedSemesters">0</h3>
+            <p id="dashboardSemestersNote">
+                No semester results saved yet.
+            </p>
+        </article>
+
+    </div>
+    
+    
+<article class="dashboard-target-tracker semester-target-card">
+    <div class="semester-target-icon">🎯</div>
+
+    <div class="semester-target-content">
+        <h3>Semester GPA target</h3>
+        <p id="dashboardSemesterTarget">
+            Set your GPA goal and work towards it.
+        </p>
+
+        <button type="button" id="toggleSemesterTarget"
+            class="semester-target-button">
+            Set my target
+        </button>
+
+        <form id="semesterTargetForm" class="semester-target-form" hidden>
+            <label for="targetSemester">Choose semester</label>
+            <select id="targetSemester" required>
+                <option value="First Semester">1st Semester</option>
+                <option value="Second Semester">2nd Semester</option>
+            </select>
+
+            <label for="targetGpa">Your target GPA (0–5)</label>
+            <input type="number" id="targetGpa"
+                min="0" max="5" step="0.01"
+                placeholder="e.g. 4.50" required>
+
+            <button type="submit" class="semester-target-button">
+                Save target
+            </button>
+
+            <p id="semesterTargetMessage" role="status"></p>
+        </form>
+    </div>
+</article>
+</section>
+
+        <section class="dashboard-footer-card">
+            <span class="footer-spark">⭐</span>
+            <div>
+                <h3>Small steps. Bigger goals.</h3>
+                <p>Stay consistent. Your effort today matters.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="auth-footer">
+        © 2026 GradeMate. Built for your journey.
+    </footer>
+
+</body>
+</html>

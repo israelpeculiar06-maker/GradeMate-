@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Results | GradeMate</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body class="results-page">
+
+<header class="results-header">
+    <a href="dashboardpage.html" class="results-brand">
+        <span class="brand-icon">G</span>
+        <span>GradeMate</span>
+    </a>
+    <a href="dashboardpage.html" class="results-back">← Dashboard</a>
+</header>
+
+<main class="results-container">
+
+    <section class="results-intro">
+        <p class="results-eyebrow">YOUR ACADEMIC JOURNEY</p>
+        <h1>Academic Results</h1>
+        <p>Track your semester GPA, session GPA and cumulative CGPA.</p>
+    </section>
+
+    <!-- SEMESTER DETAILS -->
+    <section class="results-card">
+        <div class="results-section-heading">
+            <div>
+                <h2>Semester details</h2>
+                <p>Select the semester for the results you want to enter.</p>
+            </div>
+        </div>
+
+        <div class="results-fields">
+            <div class="results-field">
+                <label for="academicLevel">Level</label>
+                <select id="academicLevel">
+                    <option value="100">100 Level</option>
+                    <option value="200" selected>200 Level</option>
+                    <option value="300">300 Level</option>
+                    <option value="400">400 Level</option>
+                    <option value="500">500 Level</option>
+                </select>
+            </div>
+
+            <div class="results-field">
+                <label for="academicSemester">Semester</label>
+                <select id="academicSemester">
+                    <option value="First">First Semester</option>
+                    <option value="Second">Second Semester</option>
+                </select>
+            </div>
+
+            <div class="results-field">
+                <label for="academicSession">Academic session</label>
+                <input
+                    id="academicSession"
+                    type="text"
+                    placeholder="e.g. 2025/2026"
+                    value="2025/2026"
+                >
+            </div>
+
+            <!-- NEW: SEMESTER GPA TARGET -->
+            <div class="results-field">
+                <label for="semesterTargetGpa">Target GPA (out of 5.00)</label>
+                <input
+                    id="semesterTargetGpa"
+                    type="number"
+                    min="0"
+                    max="5"
+                    step="0.01"
+                    placeholder="e.g. 4.50"
+                    inputmode="decimal"
+                >
+                <p class="results-note">
+                    Set the GPA you want to achieve for this particular semester.
+                    Your target will be saved with this semester's results.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COURSE ENTRY -->
+    <section class="results-card">
+        <div class="results-section-heading">
+            <div>
+                <h2>Your courses</h2>
+                <p>Add every course taken during this semester.</p>
+            </div>
+            <span id="courseCount" class="course-count">1 course</span>
+        </div>
+
+        <div class="results-table-wrap">
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Course code</th>
+                        <th>Units</th>
+                        <th>Enter by</th>
+                        <th>Score / Grade</th>
+                        <th>Grade</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="courseRows"></tbody>
+            </table>
+        </div>
+
+        <button type="button" id="addCourseBtn" class="results-add-btn">
+            + Add another course
+        </button>
+
+        <p class="results-note">
+            You can enter a score out of 100 or a letter grade.
+            GradeMate will convert it using the applicable grading rules.
+        </p>
+
+        <button
+            type="button"
+            id="calculateGpaBtn"
+            class="results-primary-btn"
+        >
+            Calculate my GPA
+        </button>
+
+        <p id="resultsMessage" class="results-message" role="status"></p>
+    </section>
+
+    <!-- SEMESTER GPA -->
+    <section id="gpaResult" class="results-card gpa-result-card" hidden>
+        <p class="results-eyebrow">SEMESTER SUMMARY</p>
+        <h2>Your Semester GPA</h2>
+
+        <div class="gpa-score-display">
+            <span id="gpaValue">0.00</span>
+            <span class="gpa-out-of">/ 5.00</span>
+        </div>
+
+        <div class="gpa-summary-grid">
+            <div class="gpa-summary-item">
+                <span>Total course units</span>
+                <strong id="totalUnits">0</strong>
+            </div>
+
+            <div class="gpa-summary-item">
+                <span>Total credit points</span>
+                <strong id="totalPoints">0.00</strong>
+            </div>
+
+            <div class="gpa-summary-item">
+                <span>Courses entered</span>
+                <strong id="totalCourses">0</strong>
+            </div>
+        </div>
+
+        <button type="button" id="editResultsBtn" class="results-add-btn">
+            Edit my results
+        </button>
+    </section>
+
+    <!-- NEW: SEMESTER GOAL FEEDBACK -->
+    <section
+        id="semesterGoalFeedback"
+        class="results-card advice-card"
+        aria-live="polite"
+        hidden
+    >
+        <div class="advice-icon">⭐</div>
+
+        <p class="results-eyebrow">YOUR SEMESTER GOAL</p>
+
+        <h2 id="semesterGoalTitle">Your progress matters!</h2>
+
+        <p id="semesterGoalText">
+            Your actual GPA will be compared with the target you set.
+        </p>
+
+        <p id="semesterGoalDetails" class="results-note"></p>
+
+        <div id="semesterGoalCourseAdvice"></div>
+    </section>
+
+    <!-- SAVED ACADEMIC RESULTS -->
+    <section class="results-section saved-results-section">
+        <div class="results-section-heading">
+            <h2>Saved Academic Results</h2>
+            <p>View and manage your previously saved semesters.</p>
+        </div>
+
+        <div id="savedResultsEmpty" class="saved-results-empty" hidden>
+            <p>No saved results yet.</p>
+            <p>Calculate your first semester GPA to see it here.</p>
+        </div>
+
+        <div id="savedSemestersList" class="saved-semesters-list"></div>
+    </section>
+
+    <!-- SESSION GPA -->
+    <section class="results-card">
+        <p class="results-eyebrow">FIRST + SECOND SEMESTER</p>
+        <h2>Session GPA</h2>
+
+        <p class="results-description">
+            See your overall performance for one academic session.
+            Both semesters must have saved results.
+        </p>
+
+        <div class="results-fields">
+            <div class="results-field">
+                <label for="sessionToCalculate">Academic session</label>
+                <input
+                    id="sessionToCalculate"
+                    type="text"
+                    placeholder="e.g. 2025/2026"
+                    value="2025/2026"
+                >
+            </div>
+        </div>
+
+        <button
+            type="button"
+            id="calculateSessionBtn"
+            class="results-primary-btn"
+        >
+            Calculate Session GPA
+        </button>
+
+        <div id="sessionResult" class="aggregate-result" hidden>
+            <p class="aggregate-label">SESSION GPA</p>
+
+            <div class="aggregate-score">
+                <span id="sessionGpaValue">0.00</span>
+                <span>/ 5.00</span>
+            </div>
+
+            <p id="sessionDetails" class="results-note"></p>
+        </div>
+
+        <p id="sessionMessage" class="results-message" role="status"></p>
+    </section>
+
+    <!-- CUMULATIVE CGPA -->
+    <section class="results-card">
+        <p class="results-eyebrow">YOUR OVERALL PERFORMANCE</p>
+        <h2>Cumulative CGPA</h2>
+
+        <p class="results-description">
+            Calculate your CGPA from all semesters with saved results.
+        </p>
+
+        <button
+            type="button"
+            id="calculateCgpaBtn"
+            class="results-primary-btn"
+        >
+            Calculate my CGPA
+        </button>
+
+        <div id="cgpaResult" class="aggregate-result" hidden>
+            <p class="aggregate-label">YOUR CURRENT CGPA</p>
+
+            <div class="aggregate-score">
+                <span id="cgpaValue">0.00</span>
+                <span>/ 5.00</span>
+            </div>
+
+            <p id="cgpaDetails" class="results-note"></p>
+        </div>
+
+        <p id="cgpaMessage" class="results-message" role="status"></p>
+    </section>
+
+    <!-- PERSONALIZED ACADEMIC ADVICE -->
+    <section id="academicAdvice" class="results-card advice-card" hidden>
+        <div class="advice-icon">⭐</div>
+
+        <p class="results-eyebrow">A WORD FOR YOUR JOURNEY</p>
+
+        <h2 id="adviceTitle">Keep moving forward!</h2>
+
+        <p id="adviceText">
+            Every semester is another opportunity to improve.
+        </p>
+
+        <p id="adviceAction" class="results-note"></p>
+    </section>
+
+</main>
+
+<footer class="results-footer">
+    © 2026 GradeMate. Built for your journey.
+</footer>
+<script src="supabase.js"></script>
+
+</body>
+</html>

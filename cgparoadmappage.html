@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGPA Roadmap | GradeMate</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+<style>
+
+.roadmap-page {
+    background: #f6f8fc;
+    color: #17233f;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.roadmap-header {
+    padding: 20px 5%;
+    background: #ffffff;
+    border-bottom: 1px solid #e8edf5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.roadmap-header a {
+    color: #315fce;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.roadmap-main {
+    width: min(900px, 92%);
+    margin: 35px auto;
+}
+
+.roadmap-intro {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.roadmap-intro small {
+    color: #4778f5;
+    letter-spacing: 3px;
+    font-weight: 800;
+}
+
+.roadmap-intro h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(32px, 7vw, 52px);
+    margin: 15px 0;
+}
+
+.roadmap-intro p,
+.roadmap-note {
+    color: #758096;
+    line-height: 1.7;
+}
+
+.roadmap-card {
+    background: #ffffff;
+    border: 1px solid #e6ebf4;
+    border-radius: 17px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.roadmap-card label {
+    display: block;
+    font-weight: 700;
+    margin: 18px 0 8px;
+}
+
+.roadmap-card input,
+.roadmap-card select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    border: 1px solid #d5deeb;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #17233f;
+    font-size: 15px;
+}
+
+.roadmap-card button {
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 10px;
+    background: #4778f5;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 18px;
+}
+
+.roadmap-result {
+    background: #3155d9;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 25px;
+}
+
+.roadmap-result .eyebrow {
+    color: #dce6ff;
+    letter-spacing: 3px;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+.required-gpa {
+    font-size: clamp(42px, 10vw, 64px);
+    font-weight: 800;
+    margin: 15px 0;
+}
+
+.roadmap-status {
+    display: inline-block;
+    background: #e0f0df;
+    color: #315c3c;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.roadmap-description,
+.roadmap-message {
+    color: #e4eaff;
+    line-height: 1.8;
+}
+
+.roadmap-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    border-top: 1px solid #7894ec;
+    border-bottom: 1px solid #7894ec;
+    padding: 20px 0;
+    margin-top: 25px;
+}
+
+.roadmap-stats small {
+    display: block;
+    color: #dce6ff;
+    margin-bottom: 10px;
+}
+
+.semester-line {
+    display: grid;
+    grid-template-columns: 95px 1fr 45px;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    font-size: 13px;
+}
+
+.progress-track {
+    height: 10px;
+    background: #7894ec;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #ffffff;
+    border-radius: 20px;
+}
+
+.semester-line strong {
+    text-align: right;
+}
+
+.estimator-row {
+    display: grid;
+    grid-template-columns: 1fr 75px 110px 30px;
+    gap: 7px;
+    margin: 12px 0;
+}
+
+.estimator-row input,
+.estimator-row select {
+    min-width: 0;
+    padding: 11px 7px;
+}
+
+.remove-course {
+    border: 0;
+    background: transparent;
+    color: #4778f5;
+    font-size: 22px;
+}
+
+.estimator-result {
+    background: #eaf0ff;
+    color: #17233f;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 18px;
+}
+
+@media(max-width: 520px) {
+    .roadmap-card,
+    .roadmap-result {
+        padding: 20px 16px;
+    }
+
+    .roadmap-stats {
+        gap: 5px;
+    }
+
+    .roadmap-stats small {
+        font-size: 11px;
+    }
+
+    .roadmap-stats strong {
+        font-size: 17px;
+    }
+
+    .estimator-row {
+        grid-template-columns: 1fr 55px 85px 22px;
+        gap: 5px;
+    }
+
+    .estimator-row input,
+    .estimator-row select {
+        font-size: 12px;
+    }
+}
+
+html[data-theme="dark"] .roadmap-page {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+html[data-theme="dark"] .roadmap-header,
+html[data-theme="dark"] .roadmap-card {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-color: #334155;
+}
+
+html[data-theme="dark"] .roadmap-card input,
+html[data-theme="dark"] .roadmap-card select {
+    background: #0f172a;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+
+html[data-theme="dark"] .estimator-result {
+    background: #29374a;
+    color: #e2e8f0;
+}
+
+html[data-theme="dark"] .roadmap-note {
+    color: #aab5c5;
+}
+.roadmap-header .brand-highlight {
+    color: #4778f5;
+}
+</style>
+</head>
+
+<body class="roadmap-page">
+
+<header class="roadmap-header">
+    <a href="dashboardpage.html">← Back to Dashboard</a>
+    <strong>Grade<span class="brand-highlight">Mate</span></strong>
+</header>
+
+<main class="roadmap-main">
+
+    <section class="roadmap-intro">
+        <small>THE CGPA PLANNER</small>
+        <h1>Your goal. <em>Your roadmap.</em></h1>
+        <p>
+            See what you need to achieve your desired CGPA.
+            Your saved academic results are used automatically.
+        </p>
+    </section>
+
+    <section class="roadmap-card">
+        <h2>Your academic information</h2>
+
+        <label>Current CGPA</label>
+        <input id="currentCgpa" readonly>
+
+        <label>Grading scale</label>
+        <input value="5.00 scale" readonly>
+
+        <label>Current level</label>
+        <input id="currentLevel" readonly>
+
+        <label>Completed semesters</label>
+        <input id="completedSemesters" readonly>
+
+        <label>Total years in your programme</label>
+        <select id="programmeYears">
+            <option value="3">3 years</option>
+            <option value="4" selected>4 years</option>
+            <option value="5">5 years</option>
+            <option value="6">6 years</option>
+            <option value="7">7 years</option>
+        </select>
+
+        <label>Target CGPA</label>
+        <input id="targetCgpa" type="number"
+               min="0.01" max="5" step="0.01">
+
+        <button id="updateRoadmap">Update my roadmap</button>
+        <p class="roadmap-note" id="recordMessage"></p>
+    </section>
+
+    <section class="roadmap-result">
+        <div class="eyebrow">YOUR ROADMAP</div>
+        <p>Required average GPA</p>
+
+        <div class="required-gpa" id="requiredGpa">--</div>
+
+        <span class="roadmap-status" id="roadmapStatus">
+            Waiting for your information
+        </span>
+
+        <p class="roadmap-description" id="roadmapDescription">
+            Your roadmap will appear here after your information is loaded.
+        </p>
+
+        <div class="roadmap-stats">
+            <div>
+                <small>Current CGPA</small>
+                <strong id="resultCurrentCgpa">--</strong>
+            </div>
+            <div>
+                <small>Target CGPA</small>
+                <strong id="resultTargetCgpa">--</strong>
+            </div>
+            <div>
+                <small>Semesters left</small>
+                <strong id="resultSemestersLeft">--</strong>
+            </div>
+        </div>
+
+        <h3>Semester-by-semester target</h3>
+        <p class="roadmap-message" id="semesterExplanation"></p>
+        <div id="semesterRoadmap"></div>
+    </section>
+
+    <section class="roadmap-card">
+        <h2>Course grade estimator</h2>
+        <p class="roadmap-note">
+            Add courses, credit units and expected grades to estimate
+            your semester GPA.
+        </p>
+
+        <div id="estimatorCourses"></div>
+
+        <button id="addCourse">+ Add course</button>
+        <button id="estimateGpa">Estimate my GPA</button>
+
+        <div class="estimator-result" id="estimatorResult" hidden>
+            <strong>Estimated semester GPA:</strong>
+            <h2 id="estimatedGpa">0.00</h2>
+            <p id="estimatorFeedback"></p>
+        </div>
+    </section>
+
+    <p class="roadmap-note">
+        Estimates assume a similar average credit load in future semesters.
+        Your actual results may vary depending on course units and grades.
+    </p>
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const RESULTS_KEY = "grademateSemesterResults";
+    const PROFILE_KEY = "grademateProfile";
+    const SETTINGS_KEY = "grademateRoadmapSettings";
+
+    const $ = id => document.getElementById(id);
+
+    const gradePoints = {
+        A: 5, B: 4, C: 3, D: 2, E: 1, F: 0
+    };
+
+    let results = [];
+    let profile = {};
+    let currentUnits = 0;
+    let currentPoints = 0;
+    let currentCgpa = 0;
+
+    function readData() {
+        try {
+            results = JSON.parse(
+                localStorage.getItem(RESULTS_KEY) || "[]"
+            );
+            profile = JSON.parse(
+                localStorage.getItem(PROFILE_KEY) || "{}"
+            );
+
+            if (!Array.isArray(results)) results = [];
+            if (!profile || typeof profile !== "object") {
+                profile = {};
+            }
+        } catch (error) {
+            results = [];
+            profile = {};
+        }
+    }
+
+    function calculateCurrentCgpa() {
+        currentUnits = results.reduce(
+            (sum, item) => sum + Number(item.totalUnits || 0), 0
+        );
+
+        currentPoints = results.reduce(
+            (sum, item) => sum + Number(item.totalPoints || 0), 0
+        );
+
+        currentCgpa = currentUnits > 0
+            ? currentPoints / currentUnits
+            : 0;
+    }
+
+    function loadSettings() {
+        let settings = {};
+
+        try {
+            settings = JSON.parse(
+                localStorage.getItem(SETTINGS_KEY) || "{}"
+            );
+        } catch (error) {}
+
+        $("programmeYears").value = settings.programmeYears || "4";
+
+        $("targetCgpa").value =
+            settings.targetCgpa ??
+            profile.targetCgpa ??
+            "";
+
+        $("currentCgpa").value = currentUnits
+            ? currentCgpa.toFixed(2)
+            : "No saved results yet";
+
+        $("currentLevel").value =
+            profile.level || "Not available in profile";
+
+        $("completedSemesters").value = results.length;
+
+        $("recordMessage").textContent = results.length
+            ? results.length + " saved semester result(s) found."
+            : "No saved semester results found. Save your results in Academic Results first.";
+    }
+
+    function saveSettings() {
+        const settings = {
+            programmeYears: Number($("programmeYears").value),
+            targetCgpa: Number($("targetCgpa").value)
+        };
+
+        localStorage.setItem(
+            SETTINGS_KEY,
+            JSON.stringify(settings)
+        );
+    }
+
+    function calculateRoadmap() {
+        const target = Number($("targetCgpa").value);
+        const years = Number($("programmeYears").value);
+
+        if (!currentUnits || !results.length) {
+            alert("Please save at least one semester result in Academic Results first.");
+            return;
+        }
+
+        if (!Number.isFinite(target) || target <= 0 || target > 5) {
+            alert("Enter a target CGPA between 0.01 and 5.00.");
+            return;
+        }
+
+        const totalSemesters = years * 2;
+        const completed = results.length;
+        const remaining = totalSemesters - completed;
+
+        if (remaining < 0) {
+            alert("Your saved semester count is greater than the selected programme duration. Please check your programme years.");
+            return;
+        }
+
+        saveSettings();
+
+        const averageUnits = currentUnits / completed;
+        const futureUnits = remaining * averageUnits;
+
+        const required = remaining > 0
+            ? ((target * (currentUnits + futureUnits) - currentPoints) / futureUnits)
+            : 0;
+
+        const maximum = remaining > 0
+            ? ((currentPoints + (futureUnits * 5)) /
+               (currentUnits + futureUnits))
+            : currentCgpa;
+
+        $("resultCurrentCgpa").textContent = currentCgpa.toFixed(2);
+        $("resultTargetCgpa").textContent = target.toFixed(2);
+        $("resultSemestersLeft").textContent = remaining;
+
+        $("semesterRoadmap").innerHTML = "";
+
+        if (currentCgpa >= target) {
+            $("requiredGpa").textContent = "Goal reached!";
+            $("roadmapStatus").textContent =
+                "You have already reached your target";
+
+            $("roadmapDescription").textContent =
+                "Your current CGPA is already at or above your target. Keep maintaining your performance.";
+
+            $("semesterExplanation").textContent =
+                "Keep aiming for strong semester results.";
+
+            return;
+        }
+
+        if (remaining === 0) {
+            $("requiredGpa").textContent = "--";
+            $("roadmapStatus").textContent = "No semesters remaining";
+            $("roadmapDescription").textContent =
+                "Your programme duration is complete. Your current CGPA is below the selected target.";
+            $("semesterExplanation").textContent = "";
+            return;
+        }
+
+        $("requiredGpa").textContent = required.toFixed(2);
+
+        if (required > 5) {
+            $("roadmapStatus").textContent =
+                "Target is not mathematically achievable";
+
+            $("roadmapDescription").textContent =
+                "Even with a 5.00 GPA in every remaining semester, your target cannot be reached within the selected programme duration. Your maximum estimated CGPA is " +
+                maximum.toFixed(2) + ".";
+
+        } else if (required <= 0) {
+            $("roadmapStatus").textContent =
+                "Target is mathematically achievable";
+
+            $("roadmapDescription").textContent =
+                "Your existing quality points are already sufficient to reach your target, provided you complete your remaining semesters.";
+
+        } else {
+            $("roadmapStatus").textContent =
+                "Target is mathematically achievable";
+
+            $("roadmapDescription").textContent =
+                "Aim to average " + required.toFixed(2) +
+                " GPA across your remaining semesters to reach your target.";
+        }
+
+        $("semesterExplanation").textContent =
+            "This is an equal GPA starting target. Different credit loads can change the exact GPA needed.";
+
+        for (let i = 1; i <= remaining; i++) {
+            const safeGpa = Math.max(0, Math.min(5, required));
+            const line = document.createElement("div");
+            line.className = "semester-line";
+
+            line.innerHTML = `
+                <span>Semester ${i}</span>
+                <div class="progress-track">
+                    <div class="progress-fill"
+                         style="width:${safeGpa / 5 * 100}%"></div>
+                </div>
+                <strong>${required.toFixed(2)}</strong>
+            `;
+
+            $("semesterRoadmap").appendChild(line);
+        }
+    }
+
+    function addCourse() {
+        const row = document.createElement("div");
+        row.className = "estimator-row";
+
+        row.innerHTML = `
+            <input type="text" class="course-name"
+                   placeholder="Course name">
+            <input type="number" class="course-units"
+                   placeholder="Units" min="1" max="20">
+            <select class="course-grade">
+                <option value="5">A — 5</option>
+                <option value="4">B — 4</option>
+                <option value="3">C — 3</option>
+                <option value="2">D — 2</option>
+                <option value="1">E — 1</option>
+                <option value="0">F — 0</option>
+            </select>
+            <button type="button" class="remove-course"
+                    aria-label="Remove course">×</button>
+        `;
+
+        row.querySelector(".remove-course").addEventListener(
+            "click", () => row.remove()
+        );
+
+        $("estimatorCourses").appendChild(row);
+    }
+
+    function estimateGpa() {
+        const rows = document.querySelectorAll(".estimator-row");
+
+        let units = 0;
+        let points = 0;
+
+        if (!rows.length) {
+            alert("Add at least one course first.");
+            return;
+        }
+
+        for (const row of rows) {
+            const courseUnits = Number(
+                row.querySelector(".course-units").value
+            );
+
+            const grade = Number(
+                row.querySelector(".course-grade").value
+            );
+
+            if (!courseUnits || courseUnits < 1) {
+                alert("Enter valid credit units for every course.");
+                return;
+            }
+
+            units += courseUnits;
+            points += courseUnits * grade;
+        }
+
+        const gpa = points / units;
+
+        $("estimatedGpa").textContent = gpa.toFixed(2);
+        $("estimatorFeedback").textContent =
+            "Calculated using " + units + " total credit units.";
+
+        $("estimatorResult").hidden = false;
+    }
+
+    $("updateRoadmap").addEventListener(
+        "click", calculateRoadmap
+    );
+
+    $("programmeYears").addEventListener(
+        "change", calculateRoadmap
+    );
+
+    $("addCourse").addEventListener("click", addCourse);
+    $("estimateGpa").addEventListener("click", estimateGpa);
+
+    readData();
+    calculateCurrentCgpa();
+    loadSettings();
+
+    addCourse();
+    addCourse();
+    addCourse();
+
+    if (currentUnits && $("targetCgpa").value) {
+        calculateRoadmap();
+    }
+});
+</script>
+
+<script src="supabase.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

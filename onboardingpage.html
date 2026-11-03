@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Up Your Profile | GradeMate</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body class="auth-page onboarding-page">
+
+    <header class="auth-header">
+        <a href="landingpage.html" class="brand">
+            <span class="brand-icon">G</span>
+            <span>Grade<span class="brand-highlight">Mate</span></span>
+        </a>
+        <span class="setup-progress">PROFILE SETUP · 1 OF 1</span>
+    </header>
+
+    <main class="onboarding-main">
+
+        <section class="onboarding-intro">
+            <span class="auth-eyebrow">LET'S PERSONALIZE YOUR EXPERIENCE</span>
+            <h1>Your academic journey starts here.</h1>
+            <p>Tell us a little about yourself so GradeMate can help you plan towards your CGPA goal.</p>
+        </section>
+
+        <form id="onboardingForm" class="onboarding-card">
+
+            <div class="onboarding-section-heading">
+                <span class="section-number">01</span>
+                <div>
+                    <h2>University details</h2>
+                    <p>Where are you studying?</p>
+                </div>
+            </div>
+
+            <div class="onboarding-grid">
+
+                <div class="form-field">
+                    <label for="university">University</label>
+                    <select id="university" name="university" required>
+                        <option value="Federal University of Technology, Akure" selected>
+                            Federal University of Technology, Akure (FUTA)
+                        </option>
+                        <option value="Other Nigerian university">
+                            Other Nigerian university
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="faculty">School / Faculty</label>
+                    <input
+                        type="text"
+                        id="faculty"
+                        name="faculty"
+                        value="School of Computing"
+                        placeholder="Enter your school or faculty"
+                        required
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="department">Department</label>
+                    <input
+                        type="text"
+                        id="department"
+                        name="department"
+                        value="Information Systems"
+                        placeholder="Enter your department"
+                        required
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="admissionRoute">Admission route</label>
+                    <select id="admissionRoute" name="admissionRoute" required>
+                        <option value="UTME" selected>UTME</option>
+                        <option value="Direct Entry">Direct Entry</option>
+                        <option value="Transfer">Transfer</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="level">Current level</label>
+                    <select id="level" name="level" required>
+                        <option value="100">100 Level</option>
+                        <option value="200" selected>200 Level</option>
+                        <option value="300">300 Level</option>
+                        <option value="400">400 Level</option>
+                        <option value="500">500 Level</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="session">Current academic session</label>
+                    <select id="session" name="session" required>
+                        <option value="2026/2027" selected>2026/2027</option>
+                        <option value="2025/2026">2025/2026</option>
+                        <option value="2024/2025">2024/2025</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="onboarding-divider"></div>
+
+            <div class="onboarding-section-heading">
+                <span class="section-number">02</span>
+                <div>
+                    <h2>Your academic goal</h2>
+                    <p>What are you working towards?</p>
+                </div>
+            </div>
+
+            <div class="onboarding-grid">
+
+                <div class="form-field">
+                    <label for="completedSemesters">Completed semesters</label>
+                    <select id="completedSemesters" name="completedSemesters" required>
+                        <option value="0">None yet</option>
+                        <option value="1" selected>1 semester</option>
+                        <option value="2">2 semesters</option>
+                        <option value="3">3 semesters</option>
+                        <option value="4">4 semesters</option>
+                        <option value="5">5 semesters</option>
+                        <option value="6">6 semesters</option>
+                        <option value="7">7 semesters</option>
+                        <option value="8">8 semesters</option>
+                        <option value="9">9 semesters</option>
+                        <option value="10">10 or more semesters</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="targetClass">Target degree class</label>
+                    <select id="targetClass" name="targetClass" required>
+                        <option value="First Class" selected>First Class</option>
+                        <option value="Second Class Upper">Second Class Upper</option>
+                        <option value="Second Class Lower">Second Class Lower</option>
+                        <option value="Third Class">Third Class</option>
+                        <option value="Set my own CGPA target">Set my own CGPA target</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="targetCgpa">Target CGPA (optional)</label>
+                    <input
+                        type="number"
+                        id="targetCgpa"
+                        name="targetCgpa"
+                        min="0"
+                        max="5"
+                        step="0.01"
+                        placeholder="e.g. 4.50"
+                    >
+                    <small>Leave blank if you only want to choose a degree class for now.</small>
+                </div>
+
+            </div>
+
+            <div class="onboarding-divider"></div>
+
+            <div class="onboarding-section-heading">
+                <span class="section-number">03</span>
+                <div>
+                    <h2>Your study routine</h2>
+                    <p>Let's make a plan that fits your day.</p>
+                </div>
+            </div>
+
+            <div class="onboarding-grid">
+
+                <div class="form-field">
+                    <label for="studyTime">Preferred study time</label>
+                    <select id="studyTime" name="studyTime" required>
+                        <option value="Morning">Morning</option>
+                        <option value="Afternoon">Afternoon</option>
+                        <option value="Evening">Evening</option>
+                        <option value="Night" selected>Night</option>
+                        <option value="Flexible">Flexible</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="studyHours">Study hours per day</label>
+                    <select id="studyHours" name="studyHours" required>
+                        <option value="1">1 hour</option>
+                        <option value="2">2 hours</option>
+                        <option value="3" selected>3 hours</option>
+                        <option value="4">4 hours</option>
+                        <option value="5">5 hours</option>
+                        <option value="6">6 hours</option>
+                        <option value="More than 6">More than 6 hours</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <p id="onboardingMessage" class="form-message" role="status"></p>
+
+            <button type="submit" class="auth-submit">
+                Save my profile →
+            </button>
+
+            <p class="onboarding-note">
+                You can update these preferences later. Make sure the information reflects your actual academic situation.
+            </p>
+
+        </form>
+
+    </main>
+
+    <footer class="auth-footer">
+        © 2026 GradeMate. Built for your journey.
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
